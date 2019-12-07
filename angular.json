@@ -33,10 +33,10 @@
             ],
             "styles": [
               {
-                "input": "src/theme/variables.scss"
+                "input": "src/theme/variables.sass"
               },
               {
-                "input": "src/global.scss"
+                "input": "src/global.sass"
               }
             ],
             "scripts": []
@@ -128,7 +128,9 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "e2e": {
@@ -178,10 +180,13 @@
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {
-      "styleext": "scss"
+      "styleext": "sass"
     },
     "@ionic/angular-toolkit:page": {
-      "styleext": "scss"
+      "styleext": "sass"
+    },
+    "@schematics/angular:component": {
+      "styleext": "sass"
     }
   }
 }
