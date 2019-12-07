@@ -1,3 +1,59 @@
 <ion-app>
+  <ion-menu contentId="content" side="start" >
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Categorie</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle >
+          <ion-item>
+            <ion-icon name="home" slot="start"></ion-icon>
+            <ion-label>Home</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle >
+          <ion-item>
+            <ion-icon name="person" slot="start"></ion-icon>
+            <ion-label>Profile</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle >
+          <ion-item>
+            <ion-icon name="chatbubbles" slot="start"></ion-icon>
+            <ion-label>Message</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle >
+          <ion-item>
+            <ion-icon name="settings" slot="start"></ion-icon>
+            <ion-label>Settings</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+<ion-router-outlet  id="content" main></ion-router-outlet>
+
+
+<ion-header translucent>
+  <ion-toolbar mode="ios">
+    <ion-buttons color="dark" slot="start">
+      <ion-menu-button>
+        <!-- <ion-icon  slot="icon-only" name="menu"></ion-icon> -->
+      </ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>LOGO</ion-title>
+
+    <ion-buttons color="dark" slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="options"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
   <ion-router-outlet></ion-router-outlet>
 </ion-app>
