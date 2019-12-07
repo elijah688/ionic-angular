@@ -5,10 +5,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-list *ngFor="let r of recipes; let i = index">
       <ion-grid>
         <ion-row>
-            <ion-col size-lg="6" offset-lg="3">
+            <ion-col size-lg="6" size-md="6" offset-md="3"  offset-lg="3">
               <ion-card>
          
                   <ion-card-header color="success">
@@ -16,16 +16,16 @@
         
                       <ion-row class="header-row">
         
-                        <ion-col size="2" align-self-center class="header-col">
+                        <ion-col size-lg='2' size-md='3' size-xs='4' class="ion-align-self-center" class="header-col">
                           <ion-avatar>
-                            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                            <img [src]="r.image">
                           </ion-avatar>
                         </ion-col>
 
 
-                        <ion-col align-self-center class="header-col">
-                          <ion-card-title>Card Title</ion-card-title>
-                          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+                        <ion-col class="ion-align-self-center" class="header-col">
+                          <ion-card-title>{{r.name}}</ion-card-title>
+                          <ion-card-subtitle>{{r.homeworld}}</ion-card-subtitle>
                         </ion-col>
         
                       </ion-row>
@@ -34,7 +34,7 @@
                   
                   </ion-card-header>
 
-                  <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                  <img class="ion-padding" [src]="r.image">
                   
                   <ion-card-content>
                     Keep close to Nature's heart... and break clear away, once in awhile,
