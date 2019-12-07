@@ -24,7 +24,6 @@ export class RecipesService {
   getRecipes():void{
     this.http.get<rickAndMortyData>(this.swapiURL).subscribe(recipes=>{
       this._recipeSubject.next(recipes.results);
-      console.log(recipes)
     })
   }
 
