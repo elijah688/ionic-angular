@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./authentication.page.sass'],
 })
 export class AuthenticationPage implements OnInit {
-
+  private title:string = 'authentication';
   constructor() { }
 
   ngOnInit() {

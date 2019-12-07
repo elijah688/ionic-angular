@@ -10,6 +10,24 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.sass']
 })
 export class AppComponent {
+  private navigate =
+  [
+    {
+      title : "Auth",
+      url   : "/authentication",
+      icon  : "home"
+    },
+    {
+      title : "LOGO",
+      url   : "/recipes",
+      icon  : "chatboxes"
+    },
+    {
+      title : "Contacts",
+      url   : "/contacts",
+      icon  : "contacts"
+    },
+  ]
   constructor(
     
     private platform: Platform,
@@ -27,9 +45,6 @@ export class AppComponent {
     });
   }
 
-  openFirst() {
-    console.log("open clicked");
-    this.menu.enable(true, 'content');
-    this.menu.open('content');
-  }
+
+  
 }
