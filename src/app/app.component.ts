@@ -13,20 +13,31 @@ export class AppComponent {
   private navigate =
   [
     {
-      title : "Authentication",
-      url   : "/authentication",
+      title : "Dashboard",
+      url   : "",
       icon  : "home"
     },
     {
-      title : "LOGO",
-      url   : "/recipes",
-      icon  : "chatboxes"
+      title : "Photos",
+      url   : "",
+      icon  : "photos"
     },
     {
-      title : "Contacts",
-      url   : "/contacts",
-      icon  : "contacts"
+      title : "Characters",
+      url   : "/list",
+      icon  : "list-box"
     },
+    {
+      title : "My Missions",
+      url   : "",
+      icon  : "locate"
+    },
+    {
+      title : "Chat",
+      url   : "/chat",
+      icon  : "chatbubbles"
+    },
+    
   ]
   constructor(
     

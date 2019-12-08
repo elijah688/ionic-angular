@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'recipes', pathMatch: 'full' },
+  { path: '', redirectTo: 'list', pathMatch: 'full' },
   {
-    path: 'recipes',
+    path: 'list',
     loadChildren: () => import('./list/list.module').then( m => m.RecipesPageModule)
   },
   {

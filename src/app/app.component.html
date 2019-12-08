@@ -1,51 +1,49 @@
 <ion-app> 
-  <ion-menu  type="push" contentId="menu">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title class="ion-text-center">MENU</ion-title>
-      </ion-toolbar>
-    </ion-header>
+  <ion-menu type="push" contentId="menu">
+    <ion-content  class="ion-no-margin">
+      <ion-grid class="app-side-nav__content-grid-container">
 
-    <ion-content>
-      <ion-grid margin>
-
-        <ion-row size=12 class="ion-align-items-center ion-justify-content-center ion-text-center">
+        <ion-row size=12 class="ion-align-items-start ion-justify-content-center ion-text-center">
           <ion-col size=3>
-            <ion-avatar text-center class="app-side-nav__avatar">
-            <ion-grid >
-            <ion-row class="ion-align-items-center ion-justify-content-center ion-text-center">
-            <ion-col>
-            <ion-icon class="app-side-nav__avatar-icon" name="person"></ion-icon>
-            </ion-col>
-            </ion-row>
-            </ion-grid>
+            <ion-avatar ion-text-center class="app-side-nav__avatar">
+              <ion-grid >
+                <ion-row class="ion-align-items-center ion-justify-content-center ion-text-center">
+                  <ion-col>
+                    <ion-icon class="app-side-nav__avatar-icon" name="person"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
             </ion-avatar>         
           </ion-col>
         </ion-row>
 
         <ion-row size=12 class="ion-align-items-center ion-justify-content-center ion-text-center">
-          <ion-col>
-            <ion-menu-toggle class="ion-no-padding" autoHide='true'>
-              <ion-list class="ion-no-padding" lines="none" *ngFor="let pages of navigate">
-                <ion-grid class="ion-no-padding">
-                  <ion-row size=12 class="ion-justify-content-center">
-                    <ion-col size=10>
-                      <ion-item [routerLink]="pages.url" [routerDirection]="[root]">
-                        <ion-icon [name]="pages.icon" slot="start"></ion-icon>
-                        {{pages.title}} 
-                      </ion-item>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-list>
+            <ion-col>
+              <ion-menu-toggle class="ion-no-padding" autoHide='true'>
+                <ion-list class="ion-no-padding" lines="none" *ngFor="let pages of navigate">
+                  <ion-grid class="ion-no-padding">
+                    <ion-row size=12 class="ion-justify-content-center">
+                      <ion-col size=10>
+                        <ion-item [routerLink]="pages.url" [routerDirection]="[root]">
+                          <ion-icon color="medium" [name]="pages.icon" slot="start"></ion-icon>
+                          <p>{{pages.title}}</p> 
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-list>
             </ion-menu-toggle>
 
             </ion-col>
           </ion-row>
 
-          <ion-row size=12 class="ion-align-items-center ion-justify-content-center ion-text-center">
+          <ion-row size=12 class="ion-align-items-end ion-justify-content-center ion-text-center">
             <ion-col>
-              <ion-icon name="power"></ion-icon>
+              <ion-menu-toggle [routerLink]="['/authentication']" [routerDirection]="[root]">
+                  <ion-button color="medium" fill="clear">
+                    <ion-icon class="app-side-nav__power-icon" name="power"></ion-icon>
+                  </ion-button>
+              </ion-menu-toggle>
             </ion-col>
           </ion-row>
 
