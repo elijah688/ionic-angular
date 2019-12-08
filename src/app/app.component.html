@@ -1,37 +1,25 @@
 <ion-app> 
-  <ion-header translucent>
-    <ion-toolbar mode="ios">
-      <ion-buttons color="dark" slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-  
-      <ion-title>{{title}}</ion-title>
-  
-      <ion-buttons color="dark" slot="end">
-        <ion-button>
-          <ion-icon slot="icon-only" name="options"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+  <ion-menu  type="push" contentId="menu">
 
-  <ion-menu  type="push" contentId="menu" side="start" >
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>SIDENAV</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content>
-        <ion-list *ngFor="let pages of navigate">
-          <ion-menu-toggle auto-hide='true'>
-            <ion-item [routerLink]="pages.url" routerDirection="root">
-              <ion-icon [name]="pages.icon" slot="start"></ion-icon>
-              {{pages.title}} 
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
-    
-    <ion-router-outlet id="menu" main></ion-router-outlet>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title text-center>MENU</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+
+      <ion-list *ngFor="let pages of navigate">
+        <ion-menu-toggle auto-hide='true'>
+          <ion-item [routerLink]="pages.url" [routerDirection]="[root]">
+            <ion-icon [name]="pages.icon" slot="start"></ion-icon>
+            {{pages.title}} 
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+
+    </ion-content>
+
+  </ion-menu>
+  <ion-router-outlet id="menu"></ion-router-outlet>
 </ion-app>

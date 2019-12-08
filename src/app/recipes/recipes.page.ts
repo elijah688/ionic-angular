@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./recipes.page.sass'],
 })
 export class RecipesPage implements OnInit, OnDestroy {
-  private title:string = "LOGO";
   private recipes:Recipe[] = [];  
 
   private revipesSubscription:Subscription = new Subscription();

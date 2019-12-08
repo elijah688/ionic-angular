@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { RecipesPageRoutingModule } from './recipes-routing.module';
 
 import { RecipesPage } from './recipes.page';
-import { NavigationModule } from '../navigation/navigation.module';
 
 @NgModule({
   imports: [
@@ -15,7 +14,6 @@ import { NavigationModule } from '../navigation/navigation.module';
     FormsModule,
     IonicModule,
     RecipesPageRoutingModule,
-    NavigationModule  
   ],
   declarations: [RecipesPage]
 })

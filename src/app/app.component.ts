@@ -13,7 +13,7 @@ export class AppComponent {
   private navigate =
   [
     {
-      title : "Auth",
+      title : "Authentication",
       url   : "/authentication",
       icon  : "home"
     },
