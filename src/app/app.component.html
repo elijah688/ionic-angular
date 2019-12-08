@@ -1,25 +1,56 @@
 <ion-app> 
   <ion-menu  type="push" contentId="menu">
-
     <ion-header>
       <ion-toolbar>
-        <ion-title text-center>MENU</ion-title>
+        <ion-title class="ion-text-center">MENU</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
+      <ion-grid margin>
 
-      <ion-list *ngFor="let pages of navigate">
-        <ion-menu-toggle auto-hide='true'>
-          <ion-item [routerLink]="pages.url" [routerDirection]="[root]">
-            <ion-icon [name]="pages.icon" slot="start"></ion-icon>
-            {{pages.title}} 
-          </ion-item>
-        </ion-menu-toggle>
-      </ion-list>
+        <ion-row size=12 class="ion-align-items-center ion-justify-content-center ion-text-center">
+          <ion-col size=3>
+            <ion-avatar text-center class="app-side-nav__avatar">
+            <ion-grid >
+            <ion-row class="ion-align-items-center ion-justify-content-center ion-text-center">
+            <ion-col>
+            <ion-icon class="app-side-nav__avatar-icon" name="person"></ion-icon>
+            </ion-col>
+            </ion-row>
+            </ion-grid>
+            </ion-avatar>         
+          </ion-col>
+        </ion-row>
 
+        <ion-row size=12 class="ion-align-items-center ion-justify-content-center ion-text-center">
+          <ion-col>
+            <ion-menu-toggle class="ion-no-padding" autoHide='true'>
+              <ion-list class="ion-no-padding" lines="none" *ngFor="let pages of navigate">
+                <ion-grid class="ion-no-padding">
+                  <ion-row size=12 class="ion-justify-content-center">
+                    <ion-col size=10>
+                      <ion-item [routerLink]="pages.url" [routerDirection]="[root]">
+                        <ion-icon [name]="pages.icon" slot="start"></ion-icon>
+                        {{pages.title}} 
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-list>
+            </ion-menu-toggle>
+
+            </ion-col>
+          </ion-row>
+
+          <ion-row size=12 class="ion-align-items-center ion-justify-content-center ion-text-center">
+            <ion-col>
+              <ion-icon name="power"></ion-icon>
+            </ion-col>
+          </ion-row>
+
+      </ion-grid>
     </ion-content>
-
   </ion-menu>
   <ion-router-outlet id="menu"></ion-router-outlet>
 </ion-app>
