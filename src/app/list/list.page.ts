@@ -1,18 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { RecipesService } from './recipes.service';
-import { Recipe } from './recipes.model';
 import { Subscription } from 'rxjs';
+import { Character } from './character.model';
+import { ListService } from './list.service';
 
 @Component({
-  selector: 'app-recipes',
-  templateUrl: './recipes.page.html',
-  styleUrls: ['./recipes.page.sass'],
+  selector: 'app-list',
+  templateUrl: './list.page.html',
+  styleUrls: ['./list.page.sass'],
 })
-export class RecipesPage implements OnInit, OnDestroy {
-  private recipes:Recipe[] = [];  
+export class ListPage implements OnInit, OnDestroy {
+  private recipes:Character[] = [];  
 
   private revipesSubscription:Subscription = new Subscription();
-  constructor(private recipeServ:RecipesService) { }
+  constructor(private recipeServ:ListService) { }
 
   ngOnInit() {
     this.recipeServ.getRecipes();

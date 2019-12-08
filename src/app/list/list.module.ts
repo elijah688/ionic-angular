@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RecipesPageRoutingModule } from './recipes-routing.module';
+import { ListPageRoutingModule } from './list-routing.module';
 
-import { RecipesPage } from './recipes.page';
+import { ListPage } from './list.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RecipesPageRoutingModule,
+    ListPageRoutingModule,
   ],
-  declarations: [RecipesPage]
+  declarations: [ListPage]
 })
 export class RecipesPageModule {}
