@@ -17,5 +17,77 @@
 </ion-header>
 
 <ion-content>
-  <p>AUTH IS WORKING!</p>
-</ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-avatar >
+          <ion-icon name="person"></ion-icon>
+        </ion-avatar>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h1>{{signUpStatus===true ? 'Sign Up' : 'Sign In'}}</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item class="auth-item__input" margin-horizontal>
+          <ion-label >
+            <ion-icon margin-end color="medium" name='mail' slot='start'></ion-icon>
+            E-mail
+          </ion-label>
+          <ion-input clearInput type="email"></ion-input>
+        </ion-item>
+      
+        <ion-item lines="none" class="auth-item__input" margin-horizontal>
+          <ion-label >
+            <ion-icon margin-end color="medium" name='lock' slot='start'></ion-icon>
+            Password
+          </ion-label>
+          <ion-input clearInput type="password"></ion-input>
+        </ion-item>
+         
+        <ion-item  lines="none" margin-horizontal>
+          <a slot="end" href="">
+            forgot password?
+          </a>
+        </ion-item>
+
+      </ion-col>
+
+    </ion-row>
+    <ion-row >
+      <ion-col>
+        <ion-item class="auth-sign-up__facebook" lines='none'> 
+          <a [routerLink]="['/list']" routerDirection='forward'>
+            <h2>Sign in with</h2>
+            <ion-icon name="logo-facebook"></ion-icon>
+          </a>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col>
+        <ion-item lines="none" class=auth-item__controls>
+          <ion-chip (click)='togleSignInStatus()' [outline]='signUpStatus' [ngClass]='signUpStatus===false ? "auth-item-chip-active":"auth-item-chip-inactive"'>
+            <ion-label>
+              <h1>Sign Up</h1>
+            </ion-label>
+          </ion-chip>
+          <ion-chip (click)='togleSignInStatus()' [outline]='!signUpStatus' [ngClass]='signUpStatus===true ? "auth-item-chip-active":"auth-item-chip-inactive"'>
+              <ion-label>
+              <h1>Sign In</h1>
+            </ion-label>
+          </ion-chip>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col>
+
+      </ion-col>
+    </ion-row>
+    
+  </ion-grid>
+  </ion-content>

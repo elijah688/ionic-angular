@@ -1,6 +1,6 @@
 <ion-app> 
   <ion-menu type="push" contentId="menu">
-    <ion-content  class="ion-no-margin">
+    <ion-content class="ion-no-margin">
       <ion-grid class="app-side-nav__content-grid-container">
 
         <ion-row size=12 class="ion-align-items-start ion-justify-content-center ion-text-center">
@@ -24,7 +24,7 @@
                   <ion-grid class="ion-no-padding">
                     <ion-row size=12 class="ion-justify-content-center">
                       <ion-col size=10>
-                        <ion-item [routerLink]="pages.url" [routerDirection]="[root]">
+                        <ion-item [routerLink]="pages.url" routerDirection="forward">
                           <ion-icon color="medium" [name]="pages.icon" slot="start"></ion-icon>
                           <p>{{pages.title}}</p> 
                         </ion-item>

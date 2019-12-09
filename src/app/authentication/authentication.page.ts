@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthenticationPage implements OnInit {
   private title:string = 'authentication';
+  private isSignUp:boolean = false; 
+  private signUpStatus:boolean = false; 
+
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  togleSignInStatus():void{
+    this.signUpStatus = !this.signUpStatus;
   }
 
 }
