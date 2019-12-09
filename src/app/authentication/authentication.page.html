@@ -1,5 +1,5 @@
 <ion-header>
-
+<!-- 
   <ion-toolbar>
     <ion-buttons color="dark" slot="start">
       <ion-menu-button slot="start"></ion-menu-button>
@@ -13,81 +13,102 @@
       </ion-button>
   </ion-buttons>
 
-  </ion-toolbar>
+  </ion-toolbar> -->
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-avatar >
-          <ion-icon name="person"></ion-icon>
-        </ion-avatar>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <h1>{{signUpStatus===true ? 'Sign Up' : 'Sign In'}}</h1>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item class="auth-item__input" margin-horizontal>
-          <ion-label >
-            <ion-icon margin-end color="medium" name='mail' slot='start'></ion-icon>
-            E-mail
-          </ion-label>
-          <ion-input clearInput type="email"></ion-input>
-        </ion-item>
-      
-        <ion-item lines="none" class="auth-item__input" margin-horizontal>
-          <ion-label >
-            <ion-icon margin-end color="medium" name='lock' slot='start'></ion-icon>
-            Password
-          </ion-label>
-          <ion-input clearInput type="password"></ion-input>
-        </ion-item>
-         
-        <ion-item  lines="none" margin-horizontal>
-          <a slot="end" href="">
-            forgot password?
-          </a>
-        </ion-item>
+  <form #myForm='ngForm' [formGroup]='authForm' (ngSubmit)='signUpUser()'>
+    <ion-grid class='margin-vertical'>
+      <ion-row>
+        <ion-col>
+          <ion-avatar>
+            <ion-icon name="person"></ion-icon>
+          </ion-avatar>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines='none'>
+            <h1>Sign Up</h1>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-item class="auth-item__input ion-margin-horizontal">
+              <ion-label >
+                <ion-icon class="ion-margin-end" color="medium" name='mail' slot='start'></ion-icon>
+                E-mail
+              </ion-label>
+              <ion-input required formControlName='email' clearInput type="email"></ion-input>
+            </ion-item>
 
-      </ion-col>
 
-    </ion-row>
-    <ion-row >
-      <ion-col>
-        <ion-item class="auth-sign-up__facebook" lines='none'> 
-          <a [routerLink]="['/list']" routerDirection='forward'>
-            <h2>Sign in with</h2>
-            <ion-icon name="logo-facebook"></ion-icon>
-          </a>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row >
-      <ion-col>
-        <ion-item lines="none" class=auth-item__controls>
-          <ion-chip (click)='togleSignInStatus()' [outline]='signUpStatus' [ngClass]='signUpStatus===false ? "auth-item-chip-active":"auth-item-chip-inactive"'>
-            <ion-label>
-              <h1>Sign Up</h1>
-            </ion-label>
-          </ion-chip>
-          <ion-chip (click)='togleSignInStatus()' [outline]='!signUpStatus' [ngClass]='signUpStatus===true ? "auth-item-chip-active":"auth-item-chip-inactive"'>
-              <ion-label>
-              <h1>Sign In</h1>
-            </ion-label>
-          </ion-chip>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row >
-      <ion-col>
+            <ion-item lines="none" class="auth-item__input ion-margin-horizontal">
+              <ion-label >
+                <ion-icon class="ion-margin-end" color="medium" name='lock' slot='start'></ion-icon>
+                Password
+              </ion-label>
+              <ion-input required formControlName='pass' clearInput type="password"></ion-input>
+            </ion-item>
 
-      </ion-col>
-    </ion-row>
-    
-  </ion-grid>
+            <div *ngIf='(myForm.dirty || myForm.touched || myForm.submitted) && myForm.invalid'>
+              <ion-item *ngFor="let validation of validations">
+                <ion-label class="error-message" *ngIf="authForm.controls['email'].hasError(validation.type) && (authForm.controls['email'].dirty || authForm.controls['email'].touched) || myForm.submitted">
+                   <ion-icon name="information-circle-outline"></ion-icon>
+                  <span>{{ validation.message }}</span>
+                </ion-label>
+              </ion-item>
+            </div>
+            
+            <ion-item  lines="none" class="ion-margin-horizontal">
+              <a slot="end" href="">
+                forgot password?
+              </a>
+            </ion-item>
+          </ion-list>
+
+        </ion-col>
+
+      </ion-row>
+      <ion-row >
+        <ion-col>
+          <ion-item class="ion-margin-bottom" lines='none' class="auth-sign-up__facebook" > 
+            <a [routerLink]="['/list']" routerDirection='forward'>
+              <h2>Sign in with</h2>
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row >
+        <ion-col>
+          <ion-list class="ion-margin" lines="none" class=auth-item__controls>
+            
+            <ion-item>
+              <ion-button size='default' class='auth-item__controls-sign-up' type='submit' fill='outline'> 
+                Sign Up
+              </ion-button>
+            </ion-item>
+            
+
+            <ion-item >
+              <ion-button size='default' class='auth-item__controls-sign-in' type='submit' fill='solid'>
+                Sign In
+              </ion-button>
+            </ion-item>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row >
+        <ion-col>
+          <ion-item  lines='none' class='auth-terms margin-vertical'>
+            <a [routerLink]="['/authentication']" routerLinkActive="active">Terms and conditions</a>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
   </ion-content>

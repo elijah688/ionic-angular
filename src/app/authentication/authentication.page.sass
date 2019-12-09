@@ -2,6 +2,11 @@
 ion-content
     --ion-background-color: #E9ECF4
 
+ion-col
+    display: flex
+    justify-content: center
+    align-content: center
+
 
 
 ion-avatar
@@ -17,8 +22,9 @@ ion-avatar
 
 .auth-item__input
     --ion-background-color: white
-    --highlight-color-focused: none
-    border-bottom-color: transparent
+    // ion-item
+    //     // --highlight-color-focused: none
+    //     // border-bottom-color: transparent
     ion-label
         font-size: 1.2rem
         display: flex
@@ -52,19 +58,16 @@ a
     display: flex
     justify-content: center
     align-items: center
-    border: 1px solid black
-    .auth-item-chip-active
+    .auth-item__controls-sign-up
         font-size: 2rem
-        padding: 1.8rem 2.5rem
-        border-radius: 10rem
-        --background:#1F2735
+        --border-radius: 10rem
+        --color:#1F2735
+        --border-color:#1F2735	
+    .auth-item__controls-sign-in
+        font-size: 2rem
+        --border-radius: 10rem
         --color: white
-    .auth-item-chip-inactive
-        font-size: 2rem
-        padding: 1.8rem 2.5rem
-        border-radius: 10rem
         --background:#1F2735
-        --color: #1F2735
 
-  
-
+.auth-terms
+    text-decoration: underline
