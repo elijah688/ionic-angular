@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { Character } from './character.model';
+import { environment } from './../../environments/environment';
 
 interface rickAndMortyData {
   info:{
@@ -17,17 +18,19 @@ interface rickAndMortyData {
   providedIn: 'root'
 })
 export class ListService {
-  readonly swapiURL:string = "https://rickandmortyapi.com/api/character"
-  private _recipeSubject:Subject<Character[]> = new Subject<Character[]>();
+  private _rickAndMortyApi:string = environment.rickAngMortyApi;
+  private _characterSubject:Subject<Character[]> = new Subject<Character[]>();
   constructor(private http: HttpClient) { }
 
-  getRecipes():void{
-    this.http.get<rickAndMortyData>(this.swapiURL).subscribe(recipes=>{
-      this._recipeSubject.next(recipes.results);
+  getCharacters():void{
+    this.http.get<rickAndMortyData>(this._rickAndMortyApi).subscribe(characters=>{
+      this._characterSubject.next(characters.results);
+      this._rickAndMortyApi = characters.info.next;
+      console.log(characters.info.next)
     })
   }
 
-  get recipesSubject():Observable<Character[]>{
-    return this._recipeSubject.asObservable();
+  get characterSubject():Observable<Character[]>{
+    return this._characterSubject.asObservable();
   }
 }

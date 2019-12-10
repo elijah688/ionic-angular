@@ -1,48 +1,61 @@
 <ion-header>
 
   <ion-toolbar>
-      <ion-buttons color="dark" slot="start">
-        <ion-menu-button></ion-menu-button>
+      <ion-buttons  slot="start">
+        <ion-menu-button color='dark'></ion-menu-button>
       </ion-buttons>
   
       <ion-title class="ion-text-center">LOGO</ion-title>
   
-      <ion-buttons color="dark" slot="end">
-        <ion-button>
+      <ion-buttons slot="end">
+        <ion-button color="dark">
           <ion-icon slot="icon-only" name="options"></ion-icon>
         </ion-button>
       </ion-buttons>
     </ion-toolbar>
+    <ion-grid>
+      <ion-row size=12>
+        <ion-col size=4>
+          <a [routerLink]="['/list']" routerDirection='forward' >MISSIONS</a>
+        </ion-col>
+        <ion-col size=4>
+         <a [routerLink]="['/list']" routerDirection='forward' >NOTES</a>
+        </ion-col>
+        <ion-col size=4>
+          <a [routerLink]="['/list']" routerDirection='forward' >REQUEST</a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
 
 </ion-header>
 
 <ion-content>
-
   <ion-list lines="none" *ngFor="let r of recipes; let i = index">
     <ion-item>
       <ion-grid>
         <ion-row>
             <ion-col size-lg="6" size-md="6" offset-md="3"  offset-lg="3">
-              <ion-card class="card">
+              <ion-card>
           
-                <ion-card-header color="secondary">
+                <ion-card-header>
                   <ion-grid>
       
-                    <ion-row class="header-row">
+                    <ion-row >
       
-                      <ion-col size-lg='2' size-md='3' size-sm="2" size-xs='3' align-self-center class="header-col">
+                      <ion-col size-lg='2' size-md='3' size-sm="2" size-xs='3' class='ion-align-self-center'>
                         <ion-avatar>
                           <img [src]="r.image">
                         </ion-avatar>
                       </ion-col>
 
-                      <ion-col align-self-center class="header-col">
+                      <ion-col class="ion-align-self-center">
                         <ion-card-title>{{r.name}}</ion-card-title>
-                        <ion-card-subtitle>Status: {{r.status}}</ion-card-subtitle>
+                        <ion-card-subtitle color="medium">Status: {{r.status}}</ion-card-subtitle>
                       </ion-col>
 
-                      <ion-col size-lg='2' size-md='3' size-sm="2" size-xs='3' align-self-center class="header-col">
-                        <p class="header-col__date">{{r.created | date:'short'}}</p>
+                      <ion-col class="ion-align-self-center" size-lg='2' size-md='3' size-sm="2" size-xs='3'>
+                        <p>{{r.created | date:'mediumDate'}}</p>
                       </ion-col>
 
                     </ion-row>
@@ -51,14 +64,29 @@
                 
                 </ion-card-header>
 
-                <img class="ion-padding" [src]="r.image">
+                <img [src]="r.image">
                 
                 <ion-card-content class="card-content">
-                  <div class="ion-text-center">
-                    <h3>
-                      {{r.name}} is a {{r.gender | lowercase}} {{r.species | lowercase}}. {{r.gender==="Male" ? "He" : "She"}} {{r.status==="Alive" || "Unknown"  ? "is" : "was"}} originally from the planet {{r.origin.name}}. His current status is: {{r.status | uppercase}}
-                    </h3>
-                  </div>
+                  <ion-list>
+                    <ion-item class="ion-text-center">
+                        <h3>
+                          {{r.name}} is a {{r.gender | lowercase}} {{r.species | lowercase}}. {{r.gender==="Male" ? "He" : "She"}} {{r.status==="Alive" || "Unknown"  ? "is" : "was"}} originally from the planet {{r.origin.name}}. His current status is: {{r.status | uppercase}}
+                        </h3>
+                      </ion-item>
+                 
+                      <ion-item>
+                        <ion-grid>
+                          <ion-row>
+                            <ion-col>
+                              <ion-button [routerLink]="['/details']" routerDirection="forward" size='large' color='primary' fill='outline'>
+                                DETAILS
+                              </ion-button>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </ion-item>
+                     </ion-list>
+
                 </ion-card-content>
         
               </ion-card>
@@ -68,5 +96,10 @@
 
     </ion-item>
   </ion-list>
-
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

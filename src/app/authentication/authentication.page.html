@@ -17,7 +17,7 @@
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="signUpUser()" #myForm='ngForm' [formGroup]='authForm' >
+  <form (ngSubmit)="authenticate()" #myForm='ngForm' [formGroup]='authForm' >
     <ion-grid class='margin-vertical'>
       <ion-row>
         <ion-col>
@@ -87,14 +87,14 @@
           <ion-list class="ion-margin" lines="none" class=auth-item__controls>
             
             <ion-item>
-              <ion-button size='large' class='auth-item__controls-sign-up' type='submit' fill='outline'> 
+              <ion-button (click)='signInStatus=false' size='large' class='auth-item__controls-sign-up' type='submit' fill='outline'> 
                 Sign Up
               </ion-button>
             </ion-item>
             
 
             <ion-item >
-              <ion-button size='large' class='auth-item__controls-sign-in' type='submit' fill='solid'>
+              <ion-button (click)='signInStatus=true' size='large' class='auth-item__controls-sign-in' type='submit' fill='solid'>
                 Sign In
               </ion-button>
             </ion-item>

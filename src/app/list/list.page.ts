@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, from } from 'rxjs';
 import { Character } from './character.model';
 import { ListService } from './list.service';
 
@@ -9,21 +9,28 @@ import { ListService } from './list.service';
   styleUrls: ['./list.page.sass'],
 })
 export class ListPage implements OnInit, OnDestroy {
+
   private recipes:Character[] = [];  
 
   private revipesSubscription:Subscription = new Subscription();
   constructor(private recipeServ:ListService) { }
 
   ngOnInit() {
-    this.recipeServ.getRecipes();
-    this.revipesSubscription = this.recipeServ.recipesSubject.subscribe(recipes=>{
-      this.recipes = recipes;
+    this.recipeServ.getCharacters();
+    this.revipesSubscription = this.recipeServ.characterSubject.subscribe(recipes=>{
+      this.recipes.push(...recipes);
     });
   }
   ngOnDestroy(): void {
     this.revipesSubscription.unsubscribe();
   }
 
+  loadData(event) {
+    setTimeout(() => {
+      console.log('Done');
+      this.recipeServ.getCharacters();
+      event.target.complete();
+    }, 500);
+  }
  
-
 }

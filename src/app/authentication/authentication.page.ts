@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, NgForm } from '@angular/forms';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, ToastController, NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 interface errorType{
     input:string,
@@ -17,30 +18,35 @@ interface errorType{
 export class AuthenticationPage implements OnInit {
 
 
- 
+  private signInStatus:boolean=false;
+   
   private validations:errorType[] = [ 
     { input: 'email', type: 'required', message: 'Email is required.' },
     { input: 'email', type: 'email', message: 'Please enter a valid email address.' },
     { input: 'email', type: 'minlength', message: 'Email must be at least 6 characters long.' },
     { input: 'pass', type: 'required', message: 'Password is required.' },
     { input: 'pass', type: 'minlength', message: 'Password must be at least 6 characters long.' },
-
   ]
   private authForm = this.fb.group({
     email: ['',[Validators.required, Validators.minLength(6), Validators.email]],
     pass: ['', [Validators.required, Validators.minLength(6)]],
   });
 
-  constructor(private toastController:ToastController, private alertController:AlertController, private fb:FormBuilder) { }
+  constructor(private navCtrl:NavController, private router: Router, private toastController:ToastController, private alertController:AlertController, private fb:FormBuilder) { }
 
   ngOnInit() {
    
   }
 
 
-  signUpUser():void{
+  authenticate():void{
     if(this.authForm.valid){
-      this.presentAlert();
+      if(this.signInStatus===true){
+        this.navCtrl.navigateForward(['/list'])
+      }
+      else{
+        this.presentAlert();
+      }
     }
     else{
       this.handleValidation();

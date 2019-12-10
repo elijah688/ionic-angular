@@ -1,7 +1,30 @@
-
-ion-list, ion-item,ion-content
+ion-header
+    ion-col
+        display: flex
+        justify-content: center
+        a
+            color: #9BADBE
+            text-decoration: none
+ion-content
     --ion-background-color: #E9ECF4
-.card
-    .header-col
-        .header-col__date
-            color: black
+ion-card
+    --background: white
+    ion-card-header
+        --background: white
+       
+        ion-card-title
+            --color: #1F2735
+    ion-card-content
+        ion-list
+            background-color: white
+            ion-item
+                ion-grid
+                    ion-row
+                        ion-col
+                            display: flex
+                            justify-content: center
+                            
+                --background: white
+                h3
+                    color: #1F2735
+
