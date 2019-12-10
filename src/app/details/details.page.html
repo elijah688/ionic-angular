@@ -1,6 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>details</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button color='dark'>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>DETAILS</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button color='dark'
+        [text]="buttonText"
+        [icon]="buttonIcon"
+        defaultHref="/list">
+      </ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

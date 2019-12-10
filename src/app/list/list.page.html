@@ -70,7 +70,7 @@
                   <ion-list>
                     <ion-item class="ion-text-center">
                         <h3>
-                          {{r.name}} is a {{r.gender | lowercase}} {{r.species | lowercase}}. {{r.gender==="Male" ? "He" : "She"}} {{r.status==="Alive" || "Unknown"  ? "is" : "was"}} originally from the planet {{r.origin.name}}. His current status is: {{r.status | uppercase}}
+                          {{r.name}} is a {{r.gender | lowercase}} {{r.species | lowercase}}. {{r.gender==="Male" ? "He" : "She"}} {{r.status==="Alive" || "Unknown"  ? "is" : "was"}} originally from the planet {{r.origin.name}}. {{r.gender==='Male' ? 'His' : 'Her'}} current status is: {{r.status | uppercase}}
                         </h3>
                       </ion-item>
                  

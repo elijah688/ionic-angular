@@ -26,11 +26,18 @@ export class ListService {
     this.http.get<rickAndMortyData>(this._rickAndMortyApi).subscribe(characters=>{
       this._characterSubject.next(characters.results);
       this._rickAndMortyApi = characters.info.next;
-      console.log(characters.info.next)
     })
   }
 
   get characterSubject():Observable<Character[]>{
     return this._characterSubject.asObservable();
+  }
+
+  getCharacter(id:string):void{
+    const rickAndMortyApi:string = environment.rickAngMortyApi;
+    this.http.get<rickAndMortyData>(`rickAndMortyApi/${id}`).subscribe(characters=>{
+      // this._characterSubject.next(characters.results);
+      // this._rickAndMortyApi = characters.info.next;
+    })
   }
 }
