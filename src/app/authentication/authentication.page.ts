@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { FormBuilder, Validators, NgForm } from '@angular/forms';
+import { AlertController, ToastController } from '@ionic/angular';
 
 interface errorType{
+    input:string,
     type:string,
     message:string
 }
@@ -14,36 +15,35 @@ interface errorType{
 
 
 export class AuthenticationPage implements OnInit {
-  
+
 
  
   private validations:errorType[] = [ 
-    { type: 'required', message: 'Username is required.' },
-    { type: 'minlength', message: 'Username must be at least 6 characters long.' },
-    { type: 'email', message: 'Please enter a valid email address.' }
+    { input: 'email', type: 'required', message: 'Email is required.' },
+    { input: 'email', type: 'email', message: 'Please enter a valid email address.' },
+    { input: 'email', type: 'minlength', message: 'Email must be at least 6 characters long.' },
+    { input: 'pass', type: 'required', message: 'Password is required.' },
+    { input: 'pass', type: 'minlength', message: 'Password must be at least 6 characters long.' },
+
   ]
   private authForm = this.fb.group({
-    email: ['',[Validators.required,Validators.minLength(6), Validators.email]],
-    pass: ['', [Validators.required]],
+    email: ['',[Validators.required, Validators.minLength(6), Validators.email]],
+    pass: ['', [Validators.required, Validators.minLength(6)]],
   });
 
-  constructor(private alertController:AlertController, private fb:FormBuilder) { }
+  constructor(private toastController:ToastController, private alertController:AlertController, private fb:FormBuilder) { }
 
   ngOnInit() {
+   
   }
 
-
-
-  myLog(){
-    console.log(this.authForm.controls['email'].errors)
-    console.log(this.authForm.controls['email'].hasError('required'))
-
-  }
 
   signUpUser():void{
     if(this.authForm.valid){
-      console.log('FORM IS VALID')
       this.presentAlert();
+    }
+    else{
+      this.handleValidation();
     }
   }
 
@@ -55,6 +55,30 @@ export class AuthenticationPage implements OnInit {
       buttons: ['OK']
     });
     await alert.present();
+  }
+  
+  async presentToast(message:string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      color: 'dark',
+      showCloseButton: true
+    });
+    toast.present();
+  }
+
+  handleValidation():void{
+    for(const v of this.validations){
+      if(this.authForm.controls['email'].hasError(v.type) && v.input==='email'){
+        this.presentToast(v.message);
+        break;
+      }
+      if(this.authForm.controls['pass'].hasError(v.type) && v.input==='pass' && this.authForm.controls['email'].valid){
+        this.presentToast(v.message);
+        break;
+      }
+
+    }
   }
 
 }

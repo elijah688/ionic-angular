@@ -17,7 +17,7 @@
 </ion-header>
 
 <ion-content>
-  <form #myForm='ngForm' [formGroup]='authForm' (ngSubmit)='signUpUser()'>
+  <form (ngSubmit)="signUpUser()" #myForm='ngForm' [formGroup]='authForm' >
     <ion-grid class='margin-vertical'>
       <ion-row>
         <ion-col>
@@ -53,14 +53,14 @@
               <ion-input required formControlName='pass' clearInput type="password"></ion-input>
             </ion-item>
 
-            <div *ngIf='(myForm.dirty || myForm.touched || myForm.submitted) && myForm.invalid'>
+            <!-- <div *ngIf='(myForm.dirty || myForm.touched || myForm.submitted) && myForm.invalid'>
               <ion-item *ngFor="let validation of validations">
                 <ion-label class="error-message" *ngIf="authForm.controls['email'].hasError(validation.type) && (authForm.controls['email'].dirty || authForm.controls['email'].touched) || myForm.submitted">
-                   <ion-icon name="information-circle-outline"></ion-icon>
+                  <ion-icon name="information-circle-outline"></ion-icon>
                   <span>{{ validation.message }}</span>
                 </ion-label>
               </ion-item>
-            </div>
+            </div> -->
             
             <ion-item  lines="none" class="ion-margin-horizontal">
               <a slot="end" href="">
@@ -87,14 +87,14 @@
           <ion-list class="ion-margin" lines="none" class=auth-item__controls>
             
             <ion-item>
-              <ion-button size='default' class='auth-item__controls-sign-up' type='submit' fill='outline'> 
+              <ion-button size='large' class='auth-item__controls-sign-up' type='submit' fill='outline'> 
                 Sign Up
               </ion-button>
             </ion-item>
             
 
             <ion-item >
-              <ion-button size='default' class='auth-item__controls-sign-in' type='submit' fill='solid'>
+              <ion-button size='large' class='auth-item__controls-sign-in' type='submit' fill='solid'>
                 Sign In
               </ion-button>
             </ion-item>
