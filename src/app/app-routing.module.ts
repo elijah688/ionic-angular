@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./authentication/authentication.module').then( m => m.AuthenticationPageModule)
   },
   {
-    path: 'details',
+    path: ':id',
     loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule)
   },
 ];

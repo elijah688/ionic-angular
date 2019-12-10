@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription, from } from 'rxjs';
 import { Character } from './character.model';
-import { ListService } from './list.service';
+import { CharacterService } from './character.service';
 
 @Component({
   selector: 'app-list',
@@ -12,23 +12,23 @@ export class ListPage implements OnInit, OnDestroy {
 
   private recipes:Character[] = [];  
 
-  private revipesSubscription:Subscription = new Subscription();
-  constructor(private recipeServ:ListService) { }
+  private charSub:Subscription = new Subscription();
+  constructor(private characterService:CharacterService) { }
 
   ngOnInit() {
-    this.recipeServ.getCharacters();
-    this.revipesSubscription = this.recipeServ.characterSubject.subscribe(recipes=>{
+    this.characterService.getCharacters();
+    this.charSub = this.characterService.characterSubject.subscribe(recipes=>{
       this.recipes.push(...recipes);
     });
   }
   ngOnDestroy(): void {
-    this.revipesSubscription.unsubscribe();
+    this.charSub.unsubscribe();
   }
 
   loadData(event) {
     setTimeout(() => {
       console.log('Done');
-      this.recipeServ.getCharacters();
+      this.characterService.getCharacters();
       event.target.complete();
     }, 500);
   }

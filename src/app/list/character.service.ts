@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { Character } from './character.model';
-import { environment } from './../../environments/environment';
+import { environment } from '../../environments/environment';
 
 interface rickAndMortyData {
   info:{
@@ -17,9 +17,10 @@ interface rickAndMortyData {
 @Injectable({
   providedIn: 'root'
 })
-export class ListService {
+export class CharacterService {
   private _rickAndMortyApi:string = environment.rickAngMortyApi;
   private _characterSubject:Subject<Character[]> = new Subject<Character[]>();
+  private _singleCharacterSubject:Subject<Character> = new Subject<Character>();
   constructor(private http: HttpClient) { }
 
   getCharacters():void{
@@ -33,11 +34,13 @@ export class ListService {
     return this._characterSubject.asObservable();
   }
 
+ get singleCharacterSubject():Observable<Character>{
+    return this._singleCharacterSubject.asObservable();
+  }
   getCharacter(id:string):void{
     const rickAndMortyApi:string = environment.rickAngMortyApi;
-    this.http.get<rickAndMortyData>(`rickAndMortyApi/${id}`).subscribe(characters=>{
-      // this._characterSubject.next(characters.results);
-      // this._rickAndMortyApi = characters.info.next;
+    this.http.get<Character>(`${rickAndMortyApi}/${id}`).subscribe(character=>{
+      this._singleCharacterSubject.next(character);
     })
   }
 }
