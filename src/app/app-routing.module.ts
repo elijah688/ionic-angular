@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthenticationGuard } from './authentication/authentication.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'list', pathMatch: 'full' },
   {
     path: 'list',
+    canActivate:[AuthenticationGuard],
     loadChildren: () => import('./list/list.module').then( m => m.RecipesPageModule)
   },
   {
@@ -12,9 +13,11 @@ const routes: Routes = [
     loadChildren: () => import('./authentication/authentication.module').then( m => m.AuthenticationPageModule)
   },
   {
-    path: ':id',
+    path: 'details/:id',
+    canActivate:[AuthenticationGuard],
     loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule)
   },
+  { path: '**', redirectTo: 'list', pathMatch: 'full' },
 ];
 
 @NgModule({

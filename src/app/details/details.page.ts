@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class DetailsPage implements OnInit, OnDestroy {
 
-
+  counter = 0;
   private currentCharacter: Character;
   private charSub:Subscription = new Subscription();
   private paramsSub:Subscription = new Subscription();
@@ -34,9 +34,12 @@ export class DetailsPage implements OnInit, OnDestroy {
 
   getPlanetIcon(origin:string):string{
     let planet:string;
-    switch (origin.includes("Earth")) {
-      case true:
+    switch (origin.substring(0,5).toLocaleLowerCase()) {
+      case 'earth':
         planet = 'globe'        
+        break;
+      case 'unkno':
+        planet = 'help'        
         break;
       default:
         planet='planet'
@@ -47,15 +50,15 @@ export class DetailsPage implements OnInit, OnDestroy {
 
   getGenderIcon(gender:string):string{
     let genderIcon:string;
-    switch (gender) {
-      case 'Male':
+    switch (gender.toLocaleLowerCase()) {
+      case 'male':
         genderIcon = 'male'        
         break;
-      case 'Female':
+      case 'female':
         genderIcon = 'female'        
         break;
       default:
-        genderIcon='transgender'
+        genderIcon='help'
         break;
     }
     return genderIcon;    
@@ -63,17 +66,21 @@ export class DetailsPage implements OnInit, OnDestroy {
 
   getSpeciesIcon(species:string):string{
     let speciesIcon:string;
-    switch (species.toLowerCase().includes('human')) {
-      case true:
+    switch (species.toLowerCase().substring(0,5)) {
+      case 'human':
         speciesIcon = 'logo-octocat'
         break;
+      case 'alien':
+        speciesIcon = 'logo-reddit'
+        break;
       default:
-        speciesIcon = 'logo-redit'
+        speciesIcon = 'help'
         break;
     }
     return speciesIcon;
   }
   getStatusIcon(status:string):string{
+    this.counter++
     let statusIcon:string;
     switch (status.toLowerCase()) {
       case 'dead':

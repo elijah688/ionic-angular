@@ -11,14 +11,14 @@ import { CharacterService } from './character.service';
 export class ListPage implements OnInit, OnDestroy {
 
   private recipes:Character[] = [];  
-
+  private currentPage:number = 1;
   private charSub:Subscription = new Subscription();
   constructor(private characterService:CharacterService) { }
 
   ngOnInit() {
-    this.characterService.getCharacters();
-    this.charSub = this.characterService.characterSubject.subscribe(recipes=>{
-      this.recipes.push(...recipes);
+    this.characterService.getCharacters(this.currentPage);
+    this.charSub = this.characterService.characterSubject.subscribe(characters=>{
+      this.recipes.push(...characters);
     });
   }
   ngOnDestroy(): void {
@@ -26,9 +26,10 @@ export class ListPage implements OnInit, OnDestroy {
   }
 
   loadData(event) {
+    this.currentPage++;
     setTimeout(() => {
       console.log('Done');
-      this.characterService.getCharacters();
+      this.characterService.getCharacters(this.currentPage);
       event.target.complete();
     }, 500);
   }

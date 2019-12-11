@@ -39,8 +39,8 @@
 
           <ion-row size=12 class="ion-align-items-end ion-justify-content-center ion-text-center">
             <ion-col>
-              <ion-menu-toggle [routerLink]="['/authentication']" routerDirection="backward">
-                <ion-button color="medium" fill="clear">
+              <ion-menu-toggle>
+                <ion-button (click)='logOut()' color="medium" fill="clear">
                   <ion-icon class="app-side-nav__power-icon" name="power"></ion-icon>
                 </ion-button>
               </ion-menu-toggle>

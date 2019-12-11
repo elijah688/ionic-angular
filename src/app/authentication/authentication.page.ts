@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, NgForm } from '@angular/forms';
 import { AlertController, ToastController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthenticationService } from './authentication.service';
+import { User } from './user.model';
 
 interface errorType{
     input:string,
@@ -32,7 +34,7 @@ export class AuthenticationPage implements OnInit {
     pass: ['', [Validators.required, Validators.minLength(6)]],
   });
 
-  constructor(private navCtrl:NavController, private router: Router, private toastController:ToastController, private alertController:AlertController, private fb:FormBuilder) { }
+  constructor(private authService:AuthenticationService, private router: Router, private toastController:ToastController, private alertController:AlertController, private fb:FormBuilder) { }
 
   ngOnInit() {
    
@@ -41,27 +43,24 @@ export class AuthenticationPage implements OnInit {
 
   authenticate():void{
     if(this.authForm.valid){
+      const email:string = this.authForm.controls['email'].value;
+      const password:string = this.authForm.controls['pass'].value;
+
+      const user:User = {email:email, password:password, returnSecureToken:true}
+
       if(this.signInStatus===true){
-        this.navCtrl.navigateForward(['/list'])
+        this.authService.signIn(user);
       }
       else{
-        this.presentAlert();
+        this.authService.signUp(user);
       }
+      this.authForm.reset();
     }
     else{
       this.handleValidation();
     }
   }
 
-  async presentAlert():Promise<any> {
-    const alert = await this.alertController.create({
-      header: 'Success!',
-      subHeader: 'You have signed up',
-      message: `You can now sign in with your user name: ${this.authForm.controls['email'].value}` ,
-      buttons: ['OK']
-    });
-    await alert.present();
-  }
   
   async presentToast(message:string) {
     const toast = await this.toastController.create({
@@ -85,6 +84,10 @@ export class AuthenticationPage implements OnInit {
       }
 
     }
+  }
+
+  logOut():void{
+    this.authService.logOut();
   }
 
 }

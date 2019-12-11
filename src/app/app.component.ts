@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AuthenticationService } from './authentication/authentication.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.sass']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   private navigate =
   [
     {
@@ -40,7 +41,7 @@ export class AppComponent {
     
   ]
   constructor(
-    
+    private authServ:AuthenticationService,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
@@ -56,6 +57,13 @@ export class AppComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.authServ.autoLogin();    
+  }
 
+  logOut():void{
+    this.authServ.logOut();
+  }
   
+
 }
