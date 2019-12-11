@@ -23,7 +23,6 @@ export class DetailsPage implements OnInit, OnDestroy {
       this.characterServ.getCharacter(id);
       this.charSub = this.characterServ.singleCharacterSubject.subscribe(char=>{
         this.currentCharacter = char;
-        console.log(this.currentCharacter);
       })
     })
   }
@@ -60,6 +59,34 @@ export class DetailsPage implements OnInit, OnDestroy {
         break;
     }
     return genderIcon;    
+  }
+
+  getSpeciesIcon(species:string):string{
+    let speciesIcon:string;
+    switch (species.toLowerCase().includes('human')) {
+      case true:
+        speciesIcon = 'logo-octocat'
+        break;
+      default:
+        speciesIcon = 'logo-redit'
+        break;
+    }
+    return speciesIcon;
+  }
+  getStatusIcon(status:string):string{
+    let statusIcon:string;
+    switch (status.toLowerCase()) {
+      case 'dead':
+        statusIcon = 'close-circle-outline'
+        break;
+      case 'alive':
+        statusIcon = 'checkmark'
+        break;
+      default:
+        statusIcon = 'help'
+        break;
+    }
+    return statusIcon;
   }
 
 }

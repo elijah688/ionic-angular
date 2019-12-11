@@ -35,61 +35,61 @@
     <ion-item>
       <ion-grid>
         <ion-row>
-            <ion-col size-lg="6" size-md="6" offset-md="3"  offset-lg="3">
-              <ion-card>
-          
-                <ion-card-header>
-                  <ion-grid>
-      
-                    <ion-row >
-      
-                      <ion-col size-lg='2' size-md='3' size-sm="2" size-xs='3' class='ion-align-self-center'>
-                        <ion-avatar>
-                          <img [src]="r.image">
-                        </ion-avatar>
-                      </ion-col>
-
-                      <ion-col class="ion-align-self-center">
-                        <ion-card-title>{{r.name}}</ion-card-title>
-                        <ion-card-subtitle color="medium">Status: {{r.status}}</ion-card-subtitle>
-                      </ion-col>
-
-                      <ion-col class="ion-align-self-center" size-lg='2' size-md='3' size-sm="2" size-xs='3'>
-                        <p>{{r.created | date:'mediumDate'}}</p>
-                      </ion-col>
-
-                    </ion-row>
-      
-                  </ion-grid>
-                
-                </ion-card-header>
-
-                <img [src]="r.image">
-                
-                <ion-card-content class="card-content">
-                  <ion-list>
-                    <ion-item class="ion-text-center">
-                        <h3>
-                          {{r.name}} is a {{r.gender | lowercase}} {{r.species | lowercase}}. {{r.gender==="Male" ? "He" : "She"}} {{r.status==="Alive" || "Unknown"  ? "is" : "was"}} originally from the planet {{r.origin.name}}. {{r.gender==='Male' ? 'His' : 'Her'}} current status is: {{r.status | uppercase}}
-                        </h3>
-                      </ion-item>
-                 
-                      <ion-item>
-                        <ion-grid>
-                          <ion-row>
-                            <ion-col>
-                              <ion-button [routerLink]="['/',r.id]" routerDirection="forward" size='large' color='primary' fill='outline'>
-                                DETAILS
-                              </ion-button>
-                            </ion-col>
-                          </ion-row>
-                        </ion-grid>
-                      </ion-item>
-                     </ion-list>
-
-                </ion-card-content>
+          <ion-col size-xs=12 size-sm=12 size-md=6 offset-md=3 size-lg=6 offset-lg=3 size-xl=6 offset-lg=3>
+            <ion-card>
         
-              </ion-card>
+              <ion-card-header>
+                <ion-grid>
+    
+                  <ion-row >
+
+                  <ion-col class="ion-align-self-center" size=2.5>
+                      <ion-avatar>
+                        <img [src]="r.image">
+                      </ion-avatar>
+                    </ion-col>
+
+                    <ion-col class="ion-align-self-center">
+                      <ion-card-title>{{r.name}}</ion-card-title>
+                      <ion-card-subtitle color="medium">Status: {{r.status}}</ion-card-subtitle>
+                    </ion-col>
+
+                    <ion-col class="ion-align-self-center" size-lg='2' size-md='3' size-sm="2" size-xs='3'>
+                      <p>{{r.created | date:'mediumDate'}}</p>
+                    </ion-col>
+
+                  </ion-row>
+    
+                </ion-grid>
+              
+              </ion-card-header>
+
+              <img [src]="r.image">
+              
+              <ion-card-content class="card-content">
+                <ion-list>
+                  <ion-item class="ion-text-center">
+                      <h3>
+                        {{r.name}} is a {{r.gender | lowercase}} {{r.species | lowercase}}. {{r.gender==="Male" ? "He" : "She"}} {{r.status==="Alive" || "Unknown"  ? "is" : "was"}} originally from the planet {{r.origin.name}}. {{r.gender==='Male' ? 'His' : 'Her'}} current status is: {{r.status | uppercase}}
+                      </h3>
+                    </ion-item>
+                
+                    <ion-item>
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col>
+                            <ion-button [routerLink]="['/',r.id]" routerDirection="forward" size='large' color='primary' fill='outline'>
+                              DETAILS
+                            </ion-button>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-item>
+                    </ion-list>
+
+              </ion-card-content>
+      
+            </ion-card>
           </ion-col>
         </ion-row>
       </ion-grid>
