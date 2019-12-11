@@ -86,8 +86,4 @@ export class AuthenticationPage implements OnInit {
     }
   }
 
-  logOut():void{
-    this.authService.logOut();
-  }
-
 }

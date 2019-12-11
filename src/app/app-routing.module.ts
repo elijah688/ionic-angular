@@ -17,7 +17,12 @@ const routes: Routes = [
     canActivate:[AuthenticationGuard],
     loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule)
   },
-  { path: '**', redirectTo: 'list', pathMatch: 'full' },
+  {
+    path: 'chat',
+    canActivate:[AuthenticationGuard],
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+  },
+  { path: '**', redirectTo: 'list', pathMatch: 'full' }
 ];
 
 @NgModule({
