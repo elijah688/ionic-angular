@@ -11,7 +11,7 @@ import { AuthenticationService } from './authentication/authentication.service';
   styleUrls: ['app.component.sass']
 })
 export class AppComponent implements OnInit{
-  private navigate =
+  public navigate =
   [
     {
       title : "Dashboard",

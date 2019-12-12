@@ -12,11 +12,11 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class ChatPage implements OnInit, OnDestroy {
   
-  private messages:ChatMessage[] = [];
-  private messageContent:string;
+  public messages:ChatMessage[] = [];
+  public messageContent:string;
   private chatServSub:Subscription = new Subscription();
   private socketSub:Subscription = new Subscription();
-  private currentUserId:string;
+  public currentUserId:string;
 
   constructor(
     private authServ:AuthenticationService,

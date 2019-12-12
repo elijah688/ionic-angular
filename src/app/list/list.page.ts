@@ -10,7 +10,7 @@ import { CharacterService } from './character.service';
 })
 export class ListPage implements OnInit, OnDestroy {
 
-  private recipes:Character[] = [];  
+  public recipes:Character[] = [];  
   private currentPage:number = 1;
   private charSub:Subscription = new Subscription();
   constructor(private characterService:CharacterService) { }

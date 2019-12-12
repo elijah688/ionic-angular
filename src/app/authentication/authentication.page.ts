@@ -20,7 +20,7 @@ interface errorType{
 export class AuthenticationPage implements OnInit {
 
 
-  private signInStatus:boolean=false;
+  public signInStatus:boolean=false;
    
   private validations:errorType[] = [ 
     { input: 'email', type: 'required', message: 'Email is required.' },
@@ -29,7 +29,7 @@ export class AuthenticationPage implements OnInit {
     { input: 'pass', type: 'required', message: 'Password is required.' },
     { input: 'pass', type: 'minlength', message: 'Password must be at least 6 characters long.' },
   ]
-  private authForm = this.fb.group({
+  public authForm = this.fb.group({
     email: ['',[Validators.required, Validators.minLength(6), Validators.email]],
     pass: ['', [Validators.required, Validators.minLength(6)]],
   });

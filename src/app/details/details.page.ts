@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class DetailsPage implements OnInit, OnDestroy {
 
   counter = 0;
-  private currentCharacter: Character;
+  public currentCharacter: Character;
   private charSub:Subscription = new Subscription();
   private paramsSub:Subscription = new Subscription();
   constructor(private characterServ: CharacterService ,private route:ActivatedRoute) { }
