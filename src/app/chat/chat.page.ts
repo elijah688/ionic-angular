@@ -15,28 +15,34 @@ export class ChatPage implements OnInit, OnDestroy {
   private messages:ChatMessage[] = [];
   private messageContent:string;
   private chatServSub:Subscription = new Subscription();
+  private socketSub:Subscription = new Subscription();
+  private currentUserId:string;
 
   constructor(
-    private db: AngularFireDatabase, 
     private authServ:AuthenticationService,
+    private db: AngularFireDatabase, 
     private chatServ:ChatService) { }
 
   ngOnInit() {
     this.chatServ.getMessages();
     this.chatServSub = this.chatServ.messageSubject.subscribe(messages=>{
       this.messages = messages;
+      // console.log(this.currentUserId)
+      console.log(this.messages)
     })
-    this.db.list('/messages').stateChanges().subscribe(res=>{
+    this.socketSub = this.db.list('/messages').stateChanges().subscribe(res=>{
       this.chatServ.getMessages();
     })
+    this.currentUserId = this.authServ.currentUserId;
+    
   }
 
   sendMessage():void{
-    const name:string = 'Name'
+    const name:string = this.authServ.currentUserEmail;
     const content = this.messageContent;
     const date = new Date().getTime().toString();
 
-    const creator:string = localStorage.getItem('currentUser');
+    const creator:string = this.currentUserId;
 
     const message:ChatMessage = {name:name, content:content, date:date, creator:creator}
     this.chatServ.sendMessage(message);
@@ -44,5 +50,6 @@ export class ChatPage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.chatServSub.unsubscribe();
+    this.socketSub.unsubscribe();
   }
 }

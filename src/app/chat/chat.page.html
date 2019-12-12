@@ -18,17 +18,33 @@
 
 <ion-content>
   <ion-grid>
-    <ion-row>
+    <ion-row >
       <ion-col size=12>
         <ion-list *ngFor="let m of messages">
-          <ion-item lines='none'>
-            <span>
-              <b>{{m.name}}:</b> {{m.content}}
-            </span>
-            <ion-label position="stacked">
-              {{m.date | date:'short'}}
-            </ion-label>
-          </ion-item>
+          <ion-grid>
+            <ion-row>
+
+              <ion-col *ngIf="currentUserId === m.creator" size=9 offset=3>
+                <div [ngClass]="currentUserId === m.creator ? 'chat__my-message' : 'chat__other-message'">
+                  <b>{{m.name}}:</b> {{m.content}}
+                </div>
+                <p text-end>
+                  {{m.date | date:'short'}}
+                </p>
+               
+              </ion-col>
+
+              <ion-col *ngIf="currentUserId !== m.creator" size=9>
+                <div [ngClass]="currentUserId === m.creator ? 'chat__my-message' : 'chat__other-message'">
+                  <b>{{m.name}}:</b> {{m.content}}
+                </div>
+                <p text-start>
+                  {{m.date | date:'short'}}
+                </p>
+              </ion-col>
+
+            </ion-row>
+          </ion-grid>
         </ion-list>
       </ion-col>
     </ion-row>

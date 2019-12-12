@@ -82,12 +82,15 @@ export class AuthenticationService {
     localStorage.setItem('token', tokenId);
     localStorage.setItem('currentUserId', token.localId);
     localStorage.setItem('expirationDate', JSON.stringify(expirationDate));
+    localStorage.setItem('currentUserEmail', JSON.stringify(token.email));
+
   }
 
   logOut():void{
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate')
     localStorage.removeItem('currentUserId');
+    localStorage.removeItem('currentUserEmail');
 
 
     this.navCtrl.navigateBack(['/authentication'])
@@ -117,6 +120,15 @@ export class AuthenticationService {
     }
   }
 
+  get currentUserId():string{
+    const currentUserId:string = localStorage.getItem('currentUserId');
+    return currentUserId;
+  }
 
-  
+  get currentUserEmail():string{
+    const currentUserEmail:string = JSON.parse(localStorage.getItem('currentUserEmail'));
+    return currentUserEmail;
+  }
+
 }
+  

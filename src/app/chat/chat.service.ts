@@ -16,9 +16,8 @@ export class ChatService {
 
   getMessages():void{
     
-    this.http.get<ChatMessage>(this.chatUrl).pipe(map(res=>{return Object.values(res)})).subscribe(res=>{
+    this.http.get<ChatMessage>(this.chatUrl).pipe(map(res=>{if(res!==null){return Object.values(res)}})).subscribe(res=>{
       this._messageSubject.next(res);
-     
     })
   }
 
