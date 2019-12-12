@@ -28,7 +28,7 @@
                 <div [ngClass]="currentUserId === m.creator ? 'chat__my-message' : 'chat__other-message'">
                   <b>{{m.name}}:</b> {{m.content}}
                 </div>
-                <p text-end>
+                <p class="ion-text-end">
                   {{m.date | date:'short'}}
                 </p>
                
@@ -38,7 +38,7 @@
                 <div [ngClass]="currentUserId === m.creator ? 'chat__my-message' : 'chat__other-message'">
                   <b>{{m.name}}:</b> {{m.content}}
                 </div>
-                <p text-start>
+                <p class="ion-text-start">
                   {{m.date | date:'short'}}
                 </p>
               </ion-col>

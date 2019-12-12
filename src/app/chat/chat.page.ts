@@ -27,8 +27,6 @@ export class ChatPage implements OnInit, OnDestroy {
     this.chatServ.getMessages();
     this.chatServSub = this.chatServ.messageSubject.subscribe(messages=>{
       this.messages = messages;
-      // console.log(this.currentUserId)
-      console.log(this.messages)
     })
     this.socketSub = this.db.list('/messages').stateChanges().subscribe(res=>{
       this.chatServ.getMessages();
