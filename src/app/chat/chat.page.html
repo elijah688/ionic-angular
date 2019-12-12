@@ -23,10 +23,10 @@
         <ion-list *ngFor="let m of messages">
           <ion-item lines='none'>
             <span>
-              <b>{{m.name}}:</b> {{m.text}}
+              <b>{{m.name}}:</b> {{m.content}}
             </span>
             <ion-label position="stacked">
-              {{m.sentAt | date:'short'}}
+              {{m.date | date:'short'}}
             </ion-label>
           </ion-item>
         </ion-list>
@@ -43,13 +43,13 @@
         </ion-icon>
       </ion-button>
     </ion-buttons>
-   <ion-item>
-     <ion-textarea ion-border placeholder='Message...'>
+   <ion-item lines="none">
+     <ion-textarea [(ngModel)]='messageContent' rows=1 ion-border placeholder='Message...'>
 
      </ion-textarea>
    </ion-item>
    <ion-buttons slot='end'>
-     <ion-button color='dark'>
+     <ion-button (click)='sendMessage(); messageContent=undefined' [disabled]='!messageContent' color='dark'>
        Send
        <ion-icon name='send' slot='icon-only'>
        </ion-icon>

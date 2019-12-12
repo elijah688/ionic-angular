@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { User } from './user.model';
 import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AlertController, NavController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { AlertService, AlertData } from '../alert/alert.service';
 
 
@@ -20,9 +20,9 @@ interface Token {
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private signUpUrl:string = environment.signUpUrl;
-  private signInUrl:string = environment.loginInUrl;
-  private key:string = environment.APIKey;
+  private signUpUrl:string = environment.signUpApi;
+  private signInUrl:string = environment.loginInApi;
+  private key:string = environment.authApiKey;
   private httpParams = new HttpParams().set('key', this.key);
   private autoLogOutTimer:ReturnType<typeof setTimeout>;
 
@@ -61,6 +61,7 @@ export class AuthenticationService {
   }
 
   handleError(error:HttpErrorResponse):Observable<HttpErrorResponse>{
+    console.log(error);
     const data:AlertData = {
       header: "ERROR",
       subHeader: error.status.toString(),
@@ -79,13 +80,15 @@ export class AuthenticationService {
     const expirationDate:Date = new Date(expirationTime);
 
     localStorage.setItem('token', tokenId);
+    localStorage.setItem('currentUserId', token.localId);
     localStorage.setItem('expirationDate', JSON.stringify(expirationDate));
   }
 
   logOut():void{
-
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate')
+    localStorage.removeItem('currentUserId');
+
 
     this.navCtrl.navigateBack(['/authentication'])
 
@@ -111,9 +114,9 @@ export class AuthenticationService {
 
     if(token){
       this.autoLogOut();
-      console.log('yeah buddy')
-
     }
   }
 
+
+  
 }
